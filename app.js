@@ -20,6 +20,7 @@
   let slots = [];
   let tokens = loadTokens();
   let loadFailed = false;
+  let rsvpName = "";
 
   // ---------- localStorage (may be blocked; degrade gracefully) ----------
   function loadTokens() {
@@ -231,6 +232,7 @@
     $("dlg-submit").disabled = false;
     $("dup-warn").hidden = true;
     setFormMsg("");
+    if (!editing && rsvpName) $("c-name").value = rsvpName;
     if (editing) {
       $("c-name").value = slot.claimed_name;
       $("c-dish").value = slot.dish;
@@ -385,7 +387,50 @@
     plus.disabled = false;
     msg.className = "form-msg";
     msg.textContent = attending ? "Got it — see you there! 🦃" : "Thanks for letting us know — we'll miss you!";
-    Gobble.celebrate();
+    if (attending) {
+      rsvpName = name;
+      Gobble.celebrate();
+    }
+    showRsvpPopup(attending);
+  });
+
+  // ---------- post-RSVP popup ----------
+  const rsvpDlg = $("rsvp-dialog");
+  const pick = (lines) => lines[Math.floor(Math.random() * lines.length)];
+
+  function showRsvpPopup(attending) {
+    const open = slots.filter((s) => !s.claimed_name).length;
+    const mine = slots.filter((s) => tokens[s.id] && s.claimed_name);
+    const go = $("rsvp-dlg-go");
+    if (!attending) {
+      $("rsvp-dlg-title").textContent = "Noooo 🥧💔";
+      $("rsvp-dlg-text").textContent = pick(CFG.RSVP_NO_LINES);
+      $("rsvp-dlg-close").textContent = "I know, I'm sorry";
+      go.hidden = true;
+    } else if (mine.length) {
+      $("rsvp-dlg-title").textContent = "See you there! 🦃";
+      $("rsvp-dlg-text").textContent = `You're already bringing ${mine.map((s) => s.dish).join(" and ")}. Hero behavior.`;
+      $("rsvp-dlg-close").textContent = "Nice";
+      go.hidden = true;
+    } else {
+      $("rsvp-dlg-title").textContent = "You're in! 🦃";
+      $("rsvp-dlg-text").textContent =
+        `${pick(CFG.RSVP_YES_LINES)} ${open ? `(${open} still open.)` : ""}`.trim();
+      $("rsvp-dlg-close").textContent = "Maybe later";
+      go.hidden = !open || isClosed();
+    }
+    rsvpDlg.showModal();
+    (go.hidden ? $("rsvp-dlg-close") : go).focus();
+  }
+
+  $("rsvp-dlg-close").addEventListener("click", () => rsvpDlg.close());
+  $("rsvp-dlg-go").addEventListener("click", () => {
+    rsvpDlg.close();
+    const btn = $("board").querySelector(".slot .btn.primary:not([disabled])");
+    if (btn) {
+      btn.closest(".category").scrollIntoView({ behavior: "smooth", block: "start" });
+      btn.focus({ preventScroll: true });
+    }
   });
 
   // ---------- Easter egg: synthesized turkey gobble ----------

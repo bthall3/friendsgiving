@@ -6,7 +6,7 @@
   <meta name="robots" content="noindex">
   <title>Experimental Psych Friendsgiving</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦃</text></svg>">
-  <link rel="stylesheet" href="styles.css?v=3">
+  <link rel="stylesheet" href="styles.css?v=4">
 </head>
 <body>
   <main class="wrap">
@@ -15,28 +15,6 @@
       <p class="when">Sat Nov 7 · 6 PM</p>
       <p id="deadline" class="deadline">Please sign up by Tue Nov 3.</p>
     </header>
-
-    <section class="card parking" aria-labelledby="park-h">
-      <h2 id="park-h">Parking</h2>
-      <p>Please carpool if you can. When you get here, park in the driveway or in the front yard.
-        If the driveway and yard fill up, there is a cul-de-sac about two houses over you can park in.</p>
-      <p>The address and parking map are in the email I sent.</p>
-    </section>
-
-    <div id="status" class="status" role="status" aria-live="polite"></div>
-
-    <section id="mine" class="card mine" hidden aria-labelledby="mine-h">
-      <h2 id="mine-h">Your sign-ups</h2>
-      <ul id="mine-list"></ul>
-    </section>
-
-    <section class="card summary" aria-labelledby="sum-h">
-      <h2 id="sum-h" class="visually-hidden">Progress</h2>
-      <p id="progress" class="progress">Loading slots…</p>
-      <ul id="cat-counts" class="cat-counts"></ul>
-    </section>
-
-    <section id="board" aria-label="Sign-up slots"></section>
 
     <section class="card rsvp" aria-labelledby="rsvp-h">
       <h2 id="rsvp-h">RSVP</h2>
@@ -64,6 +42,28 @@
         <button type="submit" class="btn primary">Send RSVP</button>
       </form>
     </section>
+
+    <section class="card parking" aria-labelledby="park-h">
+      <h2 id="park-h">Parking</h2>
+      <p>Please carpool if you can. When you get here, park in the driveway or in the front yard.
+        If the driveway and yard fill up, there is a cul-de-sac about two houses over you can park in.</p>
+      <p>The address and parking map are in the email I sent.</p>
+    </section>
+
+    <div id="status" class="status" role="status" aria-live="polite"></div>
+
+    <section id="mine" class="card mine" hidden aria-labelledby="mine-h">
+      <h2 id="mine-h">Your sign-ups</h2>
+      <ul id="mine-list"></ul>
+    </section>
+
+    <section class="card summary" aria-labelledby="sum-h">
+      <h2 id="sum-h" class="visually-hidden">Progress</h2>
+      <p id="progress" class="progress">Loading slots…</p>
+      <ul id="cat-counts" class="cat-counts"></ul>
+    </section>
+
+    <section id="board" aria-label="Sign-up slots"></section>
 
   </main>
 
@@ -98,10 +98,19 @@
     </form>
   </dialog>
 
+  <dialog id="rsvp-dialog" aria-labelledby="rsvp-dlg-title" aria-describedby="rsvp-dlg-text">
+    <h2 id="rsvp-dlg-title"></h2>
+    <p id="rsvp-dlg-text"></p>
+    <div class="dlg-actions">
+      <button type="button" id="rsvp-dlg-close" class="btn"></button>
+      <button type="button" id="rsvp-dlg-go" class="btn primary">Pick something to bring</button>
+    </div>
+  </dialog>
+
   <div id="turkey-parade" aria-hidden="true"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
-  <script src="config.js?v=3"></script>
-  <script src="app.js?v=3"></script>
+  <script src="config.js?v=4"></script>
+  <script src="app.js?v=4"></script>
 </body>
 </html>

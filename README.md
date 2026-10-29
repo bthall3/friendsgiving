@@ -53,4 +53,4 @@ Then update `EVENT_START` / `SIGNUP_DEADLINE` in `config.js` **and** the hard-co
 
 ## Easter egg
 
-A successful RSVP plays a synthesized turkey gobble (Web Audio, no audio file) and sends a turkey strutting across the screen. Tapping the 🦃 in the header does it too. The strut is skipped for `prefers-reduced-motion`; the sound only plays after a tap, per browser autoplay rules.
+A "yes" RSVP plays a synthesized turkey gobble (Web Audio, no audio file) and sends a turkey strutting across the screen. Tapping the 🦃 in the header does it too. The strut is skipped for `prefers-reduced-motion`; the sound only plays after a tap, per browser autoplay rules.
