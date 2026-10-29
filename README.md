@@ -1,4 +1,4 @@
-# Psych Grad Friendsgiving sign-up
+# Experimental Psych Friendsgiving sign-up
 
 Static page (GitHub Pages) + Supabase (Postgres, RLS, RPC, Realtime). Guests claim dish/supply slots, see what's taken live, and RSVP. No logins: edit rights come from a per-claim token stored in the guest's browser.
 
@@ -10,7 +10,7 @@ Full build spec: [`SPEC.md`](SPEC.md).
 |---|---|
 | `index.html`, `styles.css`, `app.js` | the page (no build step) |
 | `config.js` | Supabase URL + **publishable** key, event times, category labels/order |
-| `supabase/migrations/0001…0004` | schema, RLS + RPCs, 31-slot seed, realtime publication |
+| `supabase/migrations/0001…0007` | schema, RLS + RPCs, slot seed, realtime, advisor fixes, slot resize, main-dish category |
 | `sql/host_queries.sql` | headcount, open slots, oven/outlet needs, dietary notes, admin fixes |
 | `scripts/acceptance.mjs` | race / RLS / token / validation checks using only the anon key |
 

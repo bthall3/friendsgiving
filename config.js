@@ -8,6 +8,7 @@ window.FG_CONFIG = {
   SIGNUP_DEADLINE: "2026-11-04T05:59:59Z", // end of Tue Nov 3 CST (soft)
 
   CATEGORIES: [
+    { key: "main", label: "Main dishes" },
     { key: "side", label: "Sides" },
     { key: "starch", label: "Starches (potatoes, stuffing, mac)" },
     { key: "veg", label: "Veggies & salads" },
