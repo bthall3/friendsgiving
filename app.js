@@ -335,6 +335,7 @@
       setStatus("You're signed up!");
     }
     fetchSlots();
+    showClaimPopup(dish);
   });
 
   async function release(slot, btn) {
@@ -399,6 +400,18 @@
   const pick = (lines) => lines[Math.floor(Math.random() * lines.length)];
   // "*word*" in a config line renders as <em>word</em>.
   const punNodes = (line) => line.split(/\*([^*]+)\*/).map((part, i) => (i % 2 ? el("em", {}, part) : part));
+
+  function showClaimPopup(dish) {
+    const nodes = pick(CFG.CLAIM_LINES)
+      .split("{dish}")
+      .flatMap((part, i) => (i ? [el("strong", {}, dish), ...punNodes(part)] : punNodes(part)));
+    $("rsvp-dlg-title").textContent = "You're on the menu! 🥧";
+    $("rsvp-dlg-text").replaceChildren(...nodes);
+    $("rsvp-dlg-close").textContent = "Can't wait";
+    $("rsvp-dlg-go").hidden = true;
+    rsvpDlg.showModal();
+    $("rsvp-dlg-close").focus();
+  }
 
   function showRsvpPopup(attending) {
     const open = slots.filter((s) => !s.claimed_name).length;

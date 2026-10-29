@@ -33,6 +33,17 @@ window.FG_CONFIG = {
     "Great! Now let's talk about what you're *brining*.",
   ],
 
+  // Shown after someone claims a slot. {dish} is replaced with what they're bringing.
+  CLAIM_LINES: [
+    "You're the *gravy* to our mashed potatoes. Thanks for bringing {dish}!",
+    "That's *souper* of you. {dish} is officially on the menu.",
+    "You're the *zest*! Can't wait for the {dish}.",
+    "You *butter* believe we're excited about {dish}.",
+    "{dish}? Now that's *grate*. Thank you!",
+    "Oh my *gourd*, {dish}! You're the best.",
+    "We're *thankful* for you (and slightly more thankful for the {dish}).",
+  ],
+
   TAGS: [
     { key: "vegetarian", label: "Vegetarian" },
     { key: "vegan", label: "Vegan" },
