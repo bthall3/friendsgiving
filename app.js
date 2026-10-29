@@ -397,6 +397,8 @@
   // ---------- post-RSVP popup ----------
   const rsvpDlg = $("rsvp-dialog");
   const pick = (lines) => lines[Math.floor(Math.random() * lines.length)];
+  // "*word*" in a config line renders as <em>word</em>.
+  const punNodes = (line) => line.split(/\*([^*]+)\*/).map((part, i) => (i % 2 ? el("em", {}, part) : part));
 
   function showRsvpPopup(attending) {
     const open = slots.filter((s) => !s.claimed_name).length;
@@ -404,7 +406,7 @@
     const go = $("rsvp-dlg-go");
     if (!attending) {
       $("rsvp-dlg-title").textContent = "Noooo 🥧💔";
-      $("rsvp-dlg-text").textContent = pick(CFG.RSVP_NO_LINES);
+      $("rsvp-dlg-text").replaceChildren(...punNodes(pick(CFG.RSVP_NO_LINES)));
       $("rsvp-dlg-close").textContent = "I know, I'm sorry";
       go.hidden = true;
     } else if (mine.length) {
@@ -414,8 +416,8 @@
       go.hidden = true;
     } else {
       $("rsvp-dlg-title").textContent = "You're in! 🦃";
-      $("rsvp-dlg-text").textContent =
-        `${pick(CFG.RSVP_YES_LINES)} ${open ? `(${open} still open.)` : ""}`.trim();
+      $("rsvp-dlg-text").replaceChildren(
+        ...punNodes(pick(CFG.RSVP_YES_LINES)), open ? ` (${open} still open.)` : "");
       $("rsvp-dlg-close").textContent = "Maybe later";
       go.hidden = !open || isClosed();
     }
