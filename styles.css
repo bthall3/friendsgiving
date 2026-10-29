@@ -1,0 +1,182 @@
+:root {
+  --bg: #fbf6ef;
+  --surface: #ffffff;
+  --text: #2b1d14;
+  --muted: #6d5a4b;
+  --border: #e6d8c8;
+  --accent: #b5521b;
+  --accent-text: #ffffff;
+  --open: #2f7d4a;
+  --notice-bg: #fff1d6;
+  --notice-border: #e9b44c;
+  --warn: #8a5a00;
+  --error: #b42318;
+  --chip-bg: #f3e6d6;
+  --radius: 12px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1b1410;
+    --surface: #261c16;
+    --text: #f4e9dd;
+    --muted: #bba795;
+    --border: #3d2f25;
+    --accent: #e0793b;
+    --accent-text: #1b1410;
+    --open: #6cc58c;
+    --notice-bg: #3a2a12;
+    --notice-border: #a87a26;
+    --warn: #f0c060;
+    --error: #ff8a80;
+    --chip-bg: #3a2c22;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+}
+
+.wrap { max-width: 760px; margin: 0 auto; padding: 16px; }
+
+h1 { font-size: 1.6rem; line-height: 1.2; margin: 0 0 4px; }
+h2 { font-size: 1.15rem; margin: 0 0 8px; }
+h3 { font-size: 1rem; margin: 0; }
+
+.hero p { margin: 2px 0; }
+.hero .when { font-weight: 600; color: var(--accent); }
+.hero-turkey {
+  font: inherit; background: none; border: 0; padding: 0; cursor: pointer;
+  display: inline-block; min-width: 44px; min-height: 44px;
+}
+.deadline { color: var(--muted); }
+
+.notice {
+  margin: 16px 0;
+  padding: 12px 14px;
+  background: var(--notice-bg);
+  border: 2px solid var(--notice-border);
+  border-radius: var(--radius);
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+  margin: 16px 0;
+}
+
+.status:empty { display: none; }
+.status { padding: 10px 14px; border-radius: var(--radius); background: var(--chip-bg); }
+.status.error { color: var(--error); }
+
+.progress { font-weight: 600; margin: 0 0 6px; }
+.cat-counts { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.cat-counts li { background: var(--chip-bg); border-radius: 999px; padding: 2px 10px; font-size: .875rem; }
+
+.category { margin: 20px 0; }
+.category h3 { margin-bottom: 8px; }
+.category h3 .count { color: var(--muted); font-weight: 400; }
+.slots { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+
+.slot {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+}
+.slot.mine { border-color: var(--accent); }
+.slot .who { flex: 1 1 200px; min-width: 0; overflow-wrap: anywhere; }
+.slot .open-label { color: var(--open); font-weight: 600; flex: 1 1 auto; }
+.slot .actions { display: flex; gap: 6px; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+.chip { background: var(--chip-bg); border-radius: 999px; padding: 0 8px; font-size: .8rem; }
+
+.btn {
+  min-height: 44px; min-width: 44px;
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font: inherit; font-weight: 600;
+  cursor: pointer;
+}
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-text); }
+.btn:disabled { opacity: .55; cursor: progress; }
+.btn:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, .hero-turkey:focus-visible {
+  outline: 3px solid var(--accent); outline-offset: 2px;
+}
+
+form label { display: block; font-weight: 600; margin-top: 12px; }
+form label.radio, .checks label { font-weight: 400; display: flex; align-items: center; gap: 8px; min-height: 44px; margin: 0; }
+input[type="text"], input:not([type]), select, textarea {
+  width: 100%;
+  min-height: 44px;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+}
+input[type="checkbox"], input[type="radio"] { width: 20px; height: 20px; accent-color: var(--accent); }
+fieldset { border: 0; padding: 0; margin: 12px 0 0; }
+legend { font-weight: 600; padding: 0; }
+.checks { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); column-gap: 8px; }
+.help { color: var(--muted); font-size: .875rem; margin: 2px 0 0; font-weight: 400; }
+.form-msg:empty { display: none; }
+.form-msg { margin: 12px 0 0; }
+.form-msg.error { color: var(--error); }
+.warn { color: var(--warn); font-weight: 600; margin: 12px 0 0; }
+form .btn[type="submit"] { margin-top: 14px; }
+
+.mine ul { margin: 0; padding-left: 18px; }
+
+dialog {
+  width: min(520px, calc(100vw - 32px));
+  max-height: calc(100dvh - 32px);
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  padding: 16px;
+}
+dialog::backdrop { background: rgb(0 0 0 / .45); }
+.dlg-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 16px; }
+.dlg-actions .btn[type="submit"] { margin-top: 0; }
+
+.foot { color: var(--muted); font-size: .875rem; text-align: center; margin: 24px 0; }
+
+.visually-hidden {
+  position: absolute !important; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* Easter egg: a turkey struts across the bottom of the screen after an RSVP. */
+#turkey-parade { position: fixed; inset: auto 0 0 0; height: 0; pointer-events: none; z-index: 10; }
+.strut {
+  position: absolute; bottom: 12px; left: -80px;
+  font-size: 56px; line-height: 1;
+  animation: strut 2.6s linear forwards;
+}
+.strut > span { display: inline-block; animation: bob .22s ease-in-out infinite alternate; }
+@keyframes strut { to { transform: translateX(calc(100vw + 160px)); } }
+@keyframes bob { from { transform: scaleX(-1) translateY(0) rotate(-6deg); } to { transform: scaleX(-1) translateY(-8px) rotate(6deg); } }
+.gobble-pop { animation: pop .5s ease-out; }
+@keyframes pop { 50% { transform: scale(1.35) rotate(-10deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .strut, .strut > span, .gobble-pop { animation: none; }
+  .strut { display: none; }
+}

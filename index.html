@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Psych Grad Friendsgiving</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦃</text></svg>">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="wrap">
+    <header class="hero">
+      <h1><button type="button" id="hero-turkey" class="hero-turkey" aria-label="Turkey">🦃</button> Psych Grad Friendsgiving</h1>
+      <p class="when">Sat Nov 7 · 6 PM</p>
+      <p>Host is bringing the ham + plates.</p>
+      <p id="deadline" class="deadline">Please sign up by Tue Nov 3.</p>
+    </header>
+
+    <aside class="notice" role="note">
+      <strong>Heads up:</strong> The oven is busy with ham all afternoon — please bring your dish
+      ready to serve. Crockpots welcome (tell us you need an outlet).
+    </aside>
+
+    <div id="status" class="status" role="status" aria-live="polite"></div>
+
+    <section id="mine" class="card mine" hidden aria-labelledby="mine-h">
+      <h2 id="mine-h">Your sign-ups</h2>
+      <ul id="mine-list"></ul>
+    </section>
+
+    <section class="card summary" aria-labelledby="sum-h">
+      <h2 id="sum-h" class="visually-hidden">Progress</h2>
+      <p id="progress" class="progress">Loading slots…</p>
+      <ul id="cat-counts" class="cat-counts"></ul>
+    </section>
+
+    <section id="board" aria-label="Sign-up slots"></section>
+
+    <section class="card rsvp" aria-labelledby="rsvp-h">
+      <h2 id="rsvp-h">RSVP</h2>
+      <form id="rsvp-form" novalidate>
+        <label for="r-name">Your name</label>
+        <input id="r-name" name="name" maxlength="60" autocomplete="name" required>
+
+        <fieldset>
+          <legend>Coming?</legend>
+          <label class="radio"><input type="radio" name="attending" value="yes" checked> Yes!</label>
+          <label class="radio"><input type="radio" name="attending" value="no"> Can't make it</label>
+        </fieldset>
+
+        <label for="r-plus">Plus-ones</label>
+        <select id="r-plus" name="plus_ones" aria-describedby="r-plus-help">
+          <option>0</option><option>1</option><option>2</option><option>3</option>
+        </select>
+        <p id="r-plus-help" class="help">Plus-ones welcome!</p>
+
+        <label for="r-diet">Allergies or dietary needs</label>
+        <textarea id="r-diet" name="dietary" maxlength="300" rows="3" aria-describedby="r-diet-help"></textarea>
+        <p id="r-diet-help" class="help">Only the host sees this.</p>
+
+        <p id="rsvp-msg" class="form-msg" role="status" aria-live="polite"></p>
+        <button type="submit" class="btn primary">Send RSVP</button>
+      </form>
+    </section>
+
+    <footer class="foot">Address is in the group chat. Questions? Text Braden.</footer>
+  </main>
+
+  <dialog id="claim-dialog" aria-labelledby="dlg-title">
+    <form id="claim-form" method="dialog" novalidate>
+      <h2 id="dlg-title">Claim a slot</h2>
+      <p id="dlg-cat" class="help"></p>
+
+      <label for="c-name">Your name</label>
+      <input id="c-name" name="name" maxlength="60" autocomplete="name" required>
+
+      <label for="c-dish">What are you bringing?</label>
+      <input id="c-dish" name="dish" maxlength="80" required>
+
+      <fieldset>
+        <legend>Dish tags</legend>
+        <div id="c-tags" class="checks"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Needs at the party <span class="help">(leave blank if ready to serve)</span></legend>
+        <div id="c-needs" class="checks"></div>
+      </fieldset>
+
+      <p id="dup-warn" class="warn" hidden></p>
+      <p id="dlg-msg" class="form-msg" role="alert"></p>
+
+      <div class="dlg-actions">
+        <button type="button" id="dlg-cancel" class="btn">Cancel</button>
+        <button type="submit" id="dlg-submit" class="btn primary">Claim</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="turkey-parade" aria-hidden="true"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
