@@ -1,7 +1,8 @@
 // Public by design: the publishable key only grants what RLS + RPC grants allow.
 window.FG_CONFIG = {
   SUPABASE_URL: "https://fnqrkfwdmnroutkttezp.supabase.co",
-  SUPABASE_PUBLISHABLE_KEY: "REPLACE_WITH_PUBLISHABLE_KEY",
+  // Legacy anon JWT: the well-tested path for supabase-js 2.45 REST + Realtime.
+  SUPABASE_PUBLISHABLE_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZucXJrZndkbW5yb3V0a3R0ZXpwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTIzNTYxNDMsImV4cCI6MjEwNzkzMjE0M30.JxRPhmWf1e_s1zrX2k7wJqNDpdMz39Uo7SiMndqBS1I",
 
   EVENT_START: "2026-11-08T00:00:00Z", // Sat Nov 7, 6:00 PM CST
   SIGNUP_DEADLINE: "2026-11-04T05:59:59Z", // end of Tue Nov 3 CST (soft)

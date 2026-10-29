@@ -180,3 +180,4 @@ dialog::backdrop { background: rgb(0 0 0 / .45); }
   .strut, .strut > span, .gobble-pop { animation: none; }
   .strut { display: none; }
 }
+.parking ul { margin: 0; padding-left: 18px; }
